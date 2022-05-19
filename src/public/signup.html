@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holify - Kaydol</title>
+    <link href="icon/favicon.png" rel="icon">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/socket.min.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+<img src="icon/black-white-icon.png" onclick="window.location.href = '/'" alt="Holify" class="logo">
+<span class="logo_text" onclick="window.location.href = '/'">Holify</span>
+<hr>
+<br><br>
+<div class="input">
+    <label for="email" class="input_label">E-posta adresin ne?</label>
+    <input placeholder="E-posta adresini gir." id="email" class="input_field">
+    <div id="email_div"></div>
+</div>
+<div class="input">
+    <label for="email_repeat" class="input_label">E-posta'nı doğrula</label>
+    <input placeholder="E-posta'nı tekrar gir." id="email_repeat" class="input_field">
+    <div id="email_repeat_div"></div>
+</div>
+<div class="input">
+    <label for="password" class="input_label">Şifre</label>
+    <input type="password" placeholder="Şifre oluştur." id="password" class="input_field">
+    <div id="password_div"></div>
+</div>
+<div class="input">
+    <label for="repeat_password" class="input_label">Şifreyi tekrarla</label>
+    <input type="password" placeholder="Şifreyi tekrar gir." id="repeat_password" class="input_field">
+    <div id="password_repeat_div"></div>
+</div>
+<div class="input">
+    <label for="username" class="input_label">Sana nasıl hitap etmeliyiz?</label>
+    <input placeholder="Profil adını gir." id="username" class="input_field">
+    <div id="username_div"></div>
+    <span style="font-family: 'Circular Book', serif; font-size: 12px">Bu profilinde gözükecek.</span>
+</div>
+<div class="input">
+    <label for="day" class="input_label">Doğum tarihin ne zaman?</label>
+    <div style="margin-top: 10px" class="input day">
+        <div class="input_label"><label for="day" class="input_label">Gün</label></div>
+        <input type="number" placeholder="DD" id="day" maxlength="2" style="width: 50%" class="input_field">
+    </div>
+    <div style="margin-top: 10px" class="input month">
+        <div class="input_label"><label for="month" class="input_label">Ay</label></div>
+        <select id="month" class="input_field">
+            <option value="null" disabled selected>MM</option>
+            <option value="1">Ocak</option>
+            <option value="2">Şubat</option>
+            <option value="3">Mart</option>
+            <option value="4">Nisan</option>
+            <option value="5">Mayıs</option>
+            <option value="6">Haziran</option>
+            <option value="7">Temmuz</option>
+            <option value="8">Ağustos</option>
+            <option value="9">Eylül</option>
+            <option value="10">Ekim</option>
+            <option value="11">Kasım</option>
+            <option value="12">Aralık</option>
+        </select>
+    </div>
+    <div style="margin-top: 10px" class="input year">
+        <div class="input_label"><label for="year" class="input_label">Yıl</label></div>
+        <input type="number" placeholder="YYYY" id="year" maxlength="4" style="width: 50%" class="input_field">
+    </div>
+    <br><br><br><br><br><br><br>
+    <div id="date_div"></div>
+</div>
+<div class="input">
+    <label for="gender" class="input_label">Cinsiyetin ne?</label>
+    <br>
+    <select id="gender" class="input_field" style="width: auto; height: 60px">
+        <option value="null" disabled selected>Cinsiyet</option>
+        <option value="0">Erkek</option>
+        <option value="1">Kadın</option>
+        <option value="2">Belirtmek istemiyorum</option>
+    </select>
+    <div id="gender_div"></div>
+</div>
+<br>
+<input type="checkbox" id="marketing" class="marketing_input">
+<label for="marketing" class="marketing_text">Holify'dan reklamcılık mesajları almak istiyorum.</label>
+<br><br>
+<button class="register_button" id="register" disabled onclick="register()">KAYDOL</button>
+<div class="hr_bottom">
+    <hr>
+</div>
+<br>
+<div class="acc_text">Bir hesabın var mı?</div>
+<button class="acc_button" onclick="window.location.href = '/oturumaç'">HOLIFY'DA OTURUM AÇ</button>
+</body>
+<script>
+    (async () => {
+        await noAuth();
+        const n = m => document.getElementById(m);
+
+        let validation = null;
+
+        window.register = () => {
+            if (!n("register").disabled) socket.emit("register", {
+                email: n("email").value,
+                email_repeat: n("email_repeat").value,
+                username: n("username").value,
+                password: n("password").value,
+                password_repeat: n("repeat_password").value,
+                birth: (new Date(n("year").value, n("month").value - 1, n("day").value)).getTime(),
+                gender: n("gender").value * 1,
+                marketing: n("marketing").checked
+            });
+            validation = {username: n("username").value, email: n("email").value};
+        }
+
+        socket.on("register", e => {
+            if (e.success) {
+                window.location.href = "/oturumaç?email=" + e.email;
+            } else {
+                validation = {username: n("username").value, email: n("email").value};
+                if (e.alerts.username) alertTo(n("username_div"), "Kullanıcı adı zaten kullanılıyor.");
+                if (e.alerts.email) {
+                    alertTo(n("email_div"), "E-posta adresi zaten kullanılıyor.");
+                    window.location.href = "#";
+                }
+            }
+        });
+
+        n("email").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("email_repeat").focus();
+        });
+
+        n("email_repeat").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("password").focus();
+        });
+
+        n("password").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("repeat_password").focus();
+        });
+
+        n("repeat_password").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("username").focus();
+        });
+
+        n("username").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("day").focus();
+        });
+
+        n("day").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("month").focus();
+        });
+
+        n("month").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("year").focus();
+        });
+
+        n("year").addEventListener("keydown", e => {
+            if (e.key === "Enter") n("gender").focus();
+        });
+
+        function alertTo(el, str) {
+            if (!str) return el.innerHTML = "";
+            el.innerHTML = `<svg height="16" width="16" style="margin-top: 3px"><path fill="#d31225" color="red" d="M2.343 2.343a8 8 0 1111.314 11.314A8 8 0 012.343 2.343zm5.099 8.738a.773.773 0 00-.228.558.752.752 0 00.228.552.75.75 0 00.552.229.773.773 0 00.558-.229.743.743 0 00.234-.552.76.76 0 00-.234-.558.763.763 0 00-.558-.234.743.743 0 00-.552.234zm-.156-7.23l.312 6.072h.804l.3-6.072H7.286z"></path></svg><div class="alert_text">${str}</div>`;
+            n("register").disabled = true;
+        }
+
+        setInterval(() => {
+            const date = new Date(n("year").value, n("month").value - 1, n("day").value);
+            if (validation && validation.username !== n("username").value) validation.username = null;
+            if (validation && validation.email !== n("email").value) validation.email = null;
+            n("register").disabled = Object.values(validation || {}).filter(i => i).length > 0 || !date.getTime() || n("year").value * 1 > new Date().getFullYear() - 13 || n("username").value.length === 0 || n("username").value.length > 16 || n("username").value.length < 4 || n("password").value.length === 0 || !n("day").value || !n("month").value || n("month").value === "null" || !n("year").value || !n("gender").value || n("gender").value === "null";
+            if (!validation || !validation.username) {
+                if (/^[a-zA-Z\d]+$/.test(n("username").value) === false && n("username").value.length > 0)
+                    alertTo(n("username_div"), "Kullanıcı adı sadece harf ve rakam içerebilir.");
+                else if (n("username").value.length < 4 && n("username").value.length > 0)
+                    alertTo(n("username_div"), "Kullanıcı adı 4 karakterden az olamaz.");
+                else if (n("username").value.length > 16 && n("username").value.length > 0)
+                    alertTo(n("username_div"), "Kullanıcı adı 16 karakterden fazla olamaz.");
+                else
+                    alertTo(n("username_div"));
+            }
+            if (!validation || !validation.email) {
+                const emailRegex = /([a-zA-Z\d._]){8,40}@([a-zA-Z\d-_]{2,28}\.){1,4}[a-zA-Z\d-_]{2,28}/;
+                if (!emailRegex.test(n("email").value) && n("email").value.length > 0)
+                    alertTo(n("email_div"), "Geçersiz email adresi");
+                else alertTo(n("email_div"));
+            }
+            if (n("email").value !== n("email_repeat").value)
+                alertTo(n("email_repeat_div"), "Email adresleri eşleşmiyor");
+            else alertTo(n("email_repeat_div"));
+            if (n("password").value.length < 8 && n("password").value.length > 0)
+                alertTo(n("password_div"), "Şifre 8 karakterden az olamaz.");
+            else if (n("password").value.length > 100 && n("password").value.length > 0)
+                alertTo(n("password_div"), "Şifre 100 karakterden fazla olamaz.");
+            else if (n("password").value.length > 0 && !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&\/\\+\-()~`'"#^>£½{₺}¨.:;<|€]{8,}$/.test(n("password").value)))
+                alertTo(n("password_div"), "Şifre en az bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermeli.");
+            else
+                alertTo(n("password_div"));
+            if (n("password").value !== n("repeat_password").value)
+                alertTo(n("password_repeat_div"), "Şifreler eşleşmiyor");
+            else
+                alertTo(n("password_repeat_div"));
+            if (n("day").value && n("month").value !== "null" && n("year").value) {
+                if (!date.getTime()) alertTo(n("date_div"), "Geçersiz tarih");
+                else if (n("year").value * 1 > new Date().getFullYear() || n("year").value * 1 < new Date().getFullYear() - 164)
+                    alertTo(n("date_div"), "Geçersiz tarih");
+                else alertTo(n("date_div"));
+            } else alertTo(n("date_div"));
+        });
+    })();
+
+</script>
+</html>

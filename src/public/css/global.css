@@ -1,0 +1,69 @@
+* {
+    user-select: none;
+}
+
+.nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 12%;
+    background: black;
+}
+
+.nav_logo_icon {
+    position: absolute;
+    top: -20%;
+    width: 111px;
+    cursor: pointer;
+}
+
+.nav_logo_text {
+    position: absolute;
+    color: white;
+    top: 22%;
+    left: 100px;
+    font-weight: bold;
+    font-family: Gotham, serif;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.nav_links {
+    position: absolute;
+    right: 200px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-family: Gotham, serif;
+    display: inline-table;
+}
+
+.nav_link {
+    color: #D9DADC;
+    padding: 25%;
+    text-decoration: none;
+}
+
+.nav_link:hover {
+    color: #1ed760;
+    cursor: pointer;
+}
+
+.p {
+    font-family: "Gotham Book", serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #D9DADC;
+}
+
+.n {
+    letter-spacing: 0.1em;
+}
+
+.h1 {
+    font-family: Gotham, serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: #D9DADC;
+}

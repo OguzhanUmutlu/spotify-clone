@@ -1,0 +1,477 @@
+* {
+    font-family: "Circular Book", serif;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.left_tab {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 87%;
+    width: 20%;
+    background: #000000;
+    border-right: 1px solid #282828;
+}
+
+.lt_text {
+    position: absolute;
+    left: 40px;
+    top: 0;
+}
+
+.bottom_tab {
+    position: absolute;
+    left: 0;
+    top: 87%;
+    width: 100%;
+    height: 13%;
+    background: rgb(24, 24, 24);
+}
+
+.bottom_hr {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background: #282828;
+}
+
+.home {
+    position: absolute;
+    left: 10.4%;
+    top: 5%;
+    width: 89.6%;
+    cursor: pointer;
+}
+
+.search {
+    position: absolute;
+    left: 10%;
+    top: 12%;
+    width: 89.6%;
+    cursor: pointer;
+}
+
+.library {
+    position: absolute;
+    left: 10%;
+    top: 19%;
+    width: 89.6%;
+    cursor: pointer;
+}
+
+.add_playlist {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    width: 89.6%;
+    cursor: pointer;
+}
+
+.fav_playlist {
+    position: absolute;
+    left: 10%;
+    top: 37%;
+    width: 89.6%;
+    cursor: pointer;
+}
+
+.lt_hr {
+    position: absolute;
+    left: 8.5%;
+    top: 44%;
+    width: 83%;
+    height: 1px;
+    background: #282828;
+}
+
+.alpha {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s;
+}
+
+.alpha:hover {
+    transition: background-color 0.25s;
+    background: transparent;
+}
+
+.speed {
+    position: absolute;
+    left: 40.5%;
+    top: 39.2%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.time_back {
+    position: absolute;
+    left: 43.5%;
+    top: 39.2%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.song_back {
+    position: absolute;
+    left: 46.5%;
+    top: 39.2%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.pause {
+    position: absolute;
+    left: 50%;
+    top: 38.8%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.song_next {
+    position: absolute;
+    left: 53.5%;
+    top: 39.2%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.time_next {
+    position: absolute;
+    left: 56.5%;
+    top: 39.2%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.loop {
+    position: absolute;
+    left: 59.5%;
+    top: 39.2%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.time_line {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    width: 32%;
+    transform: translateX(-50%);
+    height: 4px;
+    background: #282828;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.time_line_progress {
+    position: absolute;
+    left: 34%;
+    top: 70%;
+    width: 0;
+    height: 4px;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.time_line_sphere {
+    position: absolute;
+    left: -100%;
+    top: 67%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.volume_line_image {
+    position: absolute;
+    right: 11.5%;
+    top: 35%;
+}
+
+.volume_line {
+    position: absolute;
+    right: 2%;
+    top: 40%;
+    width: 9%;
+    height: 4px;
+    background: #282828;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.volume_line_progress {
+    position: absolute;
+    left: 89%;
+    top: 40%;
+    width: 9%;
+    height: 4px;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.volume_line_sphere {
+    position: absolute;
+    left: -100%;
+    top: 38%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.start_time_text {
+    font-family: Calibri, serif;
+    position: absolute;
+    right: 66.5%;
+    top: 63%;
+    font-size: 12px;
+    color: #838383;
+}
+
+.end_time_text {
+    font-family: Calibri, serif;
+    position: absolute;
+    left: 67%;
+    top: 63%;
+    font-size: 12px;
+    color: #838383;
+}
+
+.alpha2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.5);
+    transition: background-color 0.25s;
+}
+
+.alpha2:hover {
+    transition: background-color 0.25s;
+    background: transparent;
+}
+
+.alpha2_locked:hover {
+    background: rgba(24, 24, 24, 0.5) !important;
+}
+
+.account_container {
+    position: absolute;
+    left: 20%;
+    top: 0;
+    width: 79.8%;
+    height: 10%;
+    overflow: hidden;
+    background: #282828;
+}
+
+.page_container {
+    position: absolute;
+    left: 20%;
+    top: 10%;
+    width: 79.8%;
+    height: 75.6%;
+    overflow: auto;
+}
+
+.song_container {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.song {
+    width: 80%;
+    height: 10%;
+    background: #282828;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.song:hover {
+    transition: all 0.25s;
+    background: #3d3d3d;
+    transform: scale(1.05);
+
+}
+
+.song > td {
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.song_main_td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.song_top {
+    text-align: center;
+}
+
+.song_image {
+    width: 64px;
+}
+
+.song_image_td {
+    padding: 1px !important;
+}
+
+.song_title_td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.song_artist_td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.song_table {
+    border-spacing: 0 0;
+    border-collapse: separate;
+    border: 1px solid #282828;
+    background: #282828;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 5px;
+    color: #1ed760;
+    text-align: center;
+    opacity: 1;
+    display: none;
+    transition: opacity 0.25s;
+    pointer-events: none;
+    background: black;
+}
+
+.tooltip_hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.start {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(24, 24, 24);
+    background: linear-gradient(90deg, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 1) 100%);
+    opacity: 1;
+    transition: opacity 1s;
+    cursor: not-allowed;
+}
+
+.start_hide {
+    opacity: 0;
+    transition: opacity 1s;
+    pointer-events: none;
+}
+
+.start_icon {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+}
+
+.start_text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #838383;
+}
+
+.song_details_container {
+    position: absolute;
+    overflow: hidden;
+    top: 6%;
+    left: 1.5%;
+    width: 28%;
+    border-radius: 10px;
+    background: transparent;
+    transition: all 0.25s;
+}
+
+.song_details_container:hover {
+    background: rgb(25, 25, 25);
+    transform: rotate3d(-1, 1, 0, 10deg);
+}
+
+.detail_image {
+    width: 75px;
+}
+
+.detail_name {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translateY(-50%);
+    color: white;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.detail_artist {
+    position: absolute;
+    top: 60%;
+    left: 35%;
+    transform: translateY(-50%);
+    color: white;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.song_random {
+    position: absolute;
+    left: 1%;
+    top: 3px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.song_random > img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

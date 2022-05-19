@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Gotham Black";
+    src: url("../fonts/gotham/Gotham-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham";
+    font-weight: bold;
+    src: url("../fonts/gotham/Gotham-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham";
+    font-weight: normal;
+    src: url("../fonts/gotham/Gotham-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham Book";
+    font-weight: bold;
+    src: url("../fonts/gotham/GothamMedium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Gotham Book";
+    font-weight: normal;
+    src: url("../fonts/gotham/GothamBook.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Gotham Thin";
+    src: url("../fonts/gotham/Gotham-Thin.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Circular Black";
+    src: url("../fonts/circular/CircularSpUIv3T-Black.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Circular Bold";
+    src: url("../fonts/circular/CircularSpUIv3T-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Circular Book";
+    src: url("../fonts/circular/CircularSpUIv3T-Book.ttf") format("truetype");
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holify - Oturum aç</title>
+    <link href="icon/favicon.png" rel="icon">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/socket.min.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+<img src="icon/black-white-icon.png" onclick="window.location.href = '/'" alt="Holify" class="logo">
+<span class="logo_text" onclick="window.location.href = '/'">Holify</span>
+<hr>
+<br><br>
+<div class="input">
+    <label for="username" class="input_label">E-posta veya kullanıcı adı</label>
+    <input placeholder="E-posta veya kullanıcı adı" id="username" class="input_field">
+    <div id="un_div"></div>
+</div>
+<div class="input">
+    <label for="password" class="input_label">Şifre</label>
+    <input type="password" placeholder="Şifre" id="password" class="input_field">
+    <div id="pw_div"></div>
+</div>
+<div class="forgot_pass" onclick="forgot_pass()">Şifreni mi unuttun?</div>
+<br>
+<button class="login_button" id="login" disabled onclick="login()">OTURUM AÇ</button>
+<div class="hr_bottom">
+    <hr>
+</div>
+<br>
+<div class="acc_text">Hesabın yok mu?</div>
+<button class="acc_button" onclick="window.location.href = '/kaydol'">HOLIFY'A KAYDOL</button>
+</body>
+<script>
+    (async () => {
+        await noAuth();
+        const query = window.location.search;
+        const urlParams = new URLSearchParams(query);
+        if (urlParams.get("email") || urlParams.get("username")) document.getElementById("username").value = urlParams.get("email") || urlParams.get("username");
+        const socket = io();
+        const n = m => document.getElementById(m);
+
+        let validation = null;
+
+        window.forgot_pass = () => {
+            window.location.href = '/forgot_pass';
+        }
+
+        window.login = () => {
+            if (!n("login").disabled) socket.emit("login", {
+                username: document.getElementById("username").value,
+                password: document.getElementById("password").value
+            });
+        }
+
+        socket.on("login", e => {
+            if (!e.error) {
+                localStorage.setItem("_token", e.token);
+                window.location.href = "/app";
+                return;
+            }
+            validation = {username: n("username").value, password: n("password").value};
+            alertTo(n("un_div"), "Geçersiz kullanıcı adı veya şifre");
+            alertTo(n("pw_div"), "Geçersiz kullanıcı adı veya şifre");
+            n("login").disabled = true;
+        });
+
+        n("username").addEventListener("keyup", e => {
+            if (e.key === "Enter") n("password").focus();
+        });
+
+        n("password").addEventListener("keyup", e => {
+            if (e.key === "Enter") {
+                n("login").focus();
+                n("login").click();
+            }
+        });
+
+        function alertTo(el, str) {
+            if (!str) return el.innerHTML = "";
+            el.innerHTML = `<svg height="16" width="16" style="margin-top: 3px"><path fill="#d31225" color="red" d="M2.343 2.343a8 8 0 1111.314 11.314A8 8 0 012.343 2.343zm5.099 8.738a.773.773 0 00-.228.558.752.752 0 00.228.552.75.75 0 00.552.229.773.773 0 00.558-.229.743.743 0 00.234-.552.76.76 0 00-.234-.558.763.763 0 00-.558-.234.743.743 0 00-.552.234zm-.156-7.23l.312 6.072h.804l.3-6.072H7.286z"></path></svg><div class="alert_text">${str}</div>`;
+        }
+
+        setInterval(() => {
+            if (validation && (n("username").value !== validation.username || n("password").value !== validation.password)) {
+                validation = null;
+                alertTo(n("un_div"));
+                alertTo(n("pw_div"));
+            }
+            if (validation) return;
+            n("login").disabled = n("username").value.length > 100 || n("username").value.length < 4 || n("password").value.length < 8 || validation;
+        });
+    })();
+
+</script>
+</html>

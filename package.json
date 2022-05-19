@@ -1,0 +1,9 @@
+{
+  "name": "spotify-clone",
+  "version": "1.0.0",
+  "dependencies": {
+    "better-sqlite3": "^7.5.1",
+    "express": "^4.18.1",
+    "socket.io": "^4.5.0"
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holify</title>
+    <link href="icon/favicon.png" rel="icon">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/socket.min.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<!--<body style="background: #993399">
+<div class="nav">
+    <img onclick="window.location.href = '/';" draggable="false" class="nav_logo_icon" src="icon/white-black-icon.png"
+         alt="Holify">
+    <span onclick="window.location.href = '/';" class="nav_logo_text">Holify</span>
+    <div class="nav_links" id="links">
+    </div>
+</div>
+<div class="container">
+</div>
+</body>-->
+<script>
+    (async () => {
+        await auth();
+        let links = document.getElementById("links");
+        if (user) {
+            window.location.href = "/app";
+        } else {
+            window.location.href = "/oturumaç";
+            //links.innerHTML = `<a class="nav_link" href="/kaydol">Kaydol</a><a class="nav_link" href="/oturumaç">Oturum&nbsp;aç</a>`;
+        }
+    })();
+</script>
+</html>
