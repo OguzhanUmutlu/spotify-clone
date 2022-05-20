@@ -42,7 +42,7 @@ window.LanguageManager = {
     },
     translate: key => {
         const result = LanguageManager.translateContainer()[key];
-        if (!result) console.error(`LanguageManager: ${key} not found.`);
+        if (!result) console.error(new Error("LanguageManager: Key " + key + " not found"));
         return result || key;
     },
     set: lang => {

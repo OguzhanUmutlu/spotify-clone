@@ -8,6 +8,7 @@ window.onload = async () => {
     await auth();
     if (!user) return window.location.href = "/";
     else {
+        const query = new URLSearchParams(window.location.search);
         let page;
         let percent = 0;
         let mouseDown = false;
@@ -38,6 +39,7 @@ window.onload = async () => {
             loopType: 0,
             speedType: 2,
             detailUpdate: null,
+            urlTick: 0,
             hasValidSource: () => !isNaN(sound.element.duration),
             setSource: src => {
                 const spd = sound.getSpeed();
@@ -72,6 +74,10 @@ window.onload = async () => {
                 else if (sound.getVolume() > 0) document.getElementById("volume_line_image").src = "assets/sound-lower.png";
                 else document.getElementById("volume_line_image").src = "assets/sound-no.png";
                 if (sound.hasValidSource()) {
+                    if (++sound.urlTick % 60 === 0) updateURL();
+                    document.getElementById("loop_img").src = "assets/" + ["no-loop", "loop", "mix", "list-loop"][sound.loopType] + ".png";
+                    document.getElementById("loop_div").setAttribute("data-tooltip", LanguageManager.translate(["no-loop", "loop", "mix-list", "loop-list"][sound.loopType] + "-tooltip"));
+                    document.getElementById("speed_img").src = "assets/speedx" + sound.getSpeed().toString().replaceAll(".", "") + ".png";
                     setTimeLinePercent(sound.getTime() / sound.getDuration() * 100);
                     document.getElementById("current_time").innerText = formatTime(sound.getTime());
                     document.getElementById("end_time").innerText = formatTime(sound.getDuration());
@@ -100,18 +106,17 @@ window.onload = async () => {
             getSpeed: () => sound.element.playbackRate,
             setSoundLoop: loop => sound.element.loop = loop,
             setLoopType: type => {
+                if (!" ".repeat(4)[type]) return;
                 sound.loopType = type;
                 sound.setSoundLoop(type === sound.LOOP_SELF);
-                document.getElementById("loop_img").src = "assets/" + ["no-loop", "loop", "mix", "list-loop"][type] + ".png";
-                document.getElementById("loop_div").setAttribute("data-tooltip", LanguageManager.translate(["no-loop", "loop", "mix-list", "loop-list"][type] + "-tooltip"));
             },
-            setSoundType: type => {
+            setSpeedType: type => {
+                if (!" ".repeat(10)[type]) return;
                 sound.speedType = type;
-                sound.setSpeed([0.5, 0.8, 1, 1.2, 1.5, 1.8, 2, 2.5, 3, 3.5][sound.speedType]);
-                document.getElementById("speed_img").src = "assets/speedx" + sound.getSpeed().toString().replaceAll(".", "") + ".png";
+                sound.setSpeed([0.5, 0.8, 1, 1.2, 1.5, 1.8, 2, 2.5, 3, 3.5][type]);
             },
             changeLoopType: () => sound.setLoopType((sound.loopType + 1) % 4),
-            changeSpeedType: () => sound.setSoundType((sound.speedType + 1) % 10),
+            changeSpeedType: () => sound.setSpeedType((sound.speedType + 1) % 10),
             isSoundLooping: () => sound.element.loop,
             getName: () => songs[sound.uuid].title
         };
@@ -230,6 +235,7 @@ window.onload = async () => {
         });
 
         window.setPage = r => {
+            if (!["home", "search", "library", "add", "favorite"].includes(r)) return;
             page = r;
             ["home", "search", "library", "add", "favorite"].forEach(e => {
                 document.getElementById(e + "_img").src = "assets/" + e + ".png";
@@ -246,6 +252,7 @@ window.onload = async () => {
         }
 
         window.setSound = function setSound(uuid = null, play = false) {
+            if (!songs[uuid]) uuid = null;
             if (uuid === null) {
                 sound.end();
                 document.getElementById("pause_alpha").style.display = "block";
@@ -266,6 +273,7 @@ window.onload = async () => {
                 }
             }
             sound.uuid = uuid;
+            updateURL();
             document.getElementById("pause_alpha").style.display = "none";
             ["speed", "time_next", "song_next", "pause", "song_back", "time_back", "loop"].forEach(e => {
                 document.getElementById(e + "_div").style.cursor = "pointer";
@@ -326,6 +334,23 @@ window.onload = async () => {
                 sound.toggle();
             }
         });
+
+        const changeURL = function changeURL(urlPath) {
+            window.history.pushState({}, null, urlPath);
+        }
+
+        const updateURL = function updateURL() {
+            changeURL("?page=" + page + "&song=" + sound.uuid + "&time=" + sound.getTime().toFixed(1) + "&speed=" + sound.speedType + "&loop=" + sound.loopType + "&volume=" + sound.getVolume().toFixed(1));
+        }
+
+        if (query.get("song")) setSound(query.get("song"));
+        if (query.get("page")) setPage(query.get("page"));
+        if (query.get("time")) sound.setTime(query.get("time") * 1);
+        if (query.get("speed")) sound.setSpeedType(query.get("speed") * 1);
+        if (query.get("loop")) sound.setLoopType(query.get("loop") * 1);
+        if (query.get("volume")) sound.setVolume(query.get("volume") * 1);
+
+        updateURL();
 
         const defaultSongs = Object.values(songs).sort((a, b) => a.title === b.title ? 0 : ([a.title, b.title].sort()[0] === b.title ? 1 : -1));
 
