@@ -306,5 +306,16 @@
     ],
     "date": -1,
     "time": -1
+  },
+  "28": {
+    "file": "Daft Punk - Get Lucky.mp3",
+    "iconFile": "Daft Punk - Get Lucky.png",
+    "artist": "Daft Punk",
+    "title": "Get Lucky",
+    "lyrics": [
+      ""
+    ],
+    "date": -1,
+    "time": -1
   }
 }

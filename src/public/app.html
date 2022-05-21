@@ -63,6 +63,25 @@
     </div>
     <div id="PAGE_SEARCH"></div>
     <div id="PAGE_LIBRARY"></div>
+    <div id="PAGE_PLAYLIST" hidden>
+        <div class="song_random" onclick="playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
+            <img draggable="false" src="assets/mix-list.png" alt="" width="50">
+        </div>
+        <div class="song_container">
+            <table id="song_table_playlist" class="song_table">
+                <tr class="song_top">
+                    <td class="song_main_td" data-lang="main-menu-rank-table">#</td>
+                    <td></td>
+                    <td data-lang="main-menu-title-table">Şarkı</td>
+                    <td data-lang="main-menu-artist-table">Artist</td>
+                    <td data-lang="main-menu-date-table">Tarih</td>
+                    <td data-lang="main-menu-duration-table">Süre</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </div>
+    </div>
 </div>
 <div class="bottom_tab">
     <div class="bottom_hr"></div>

@@ -286,7 +286,7 @@ window.onload = async () => {
         const getPlayListSongUuids = () => {
             if (!currentPlayList) return [];
             if (currentPlayList === "default") return defaultSongs.map(i => i.uuid);
-            return []; // TODO: implement playlists
+            return [];
         }
 
         window.nextSongInPlayList = function nextSongInPlayList() {
