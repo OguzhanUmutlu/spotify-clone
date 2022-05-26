@@ -111,7 +111,7 @@
                 password_repeat: n("repeat_password").value,
                 birth: (new Date(n("year").value, n("month").value - 1, n("day").value)).getTime(),
                 gender: n("gender").value * 1,
-                marketing: n("marketing").checked
+                marketing: !!n("marketing").checked
             });
             validation = {username: n("username").value, email: n("email").value};
         }

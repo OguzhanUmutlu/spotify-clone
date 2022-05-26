@@ -1,9 +1,9 @@
 LanguageManager.refresh();
 const requestAnimationFramePromised = () => new Promise(r => requestAnimationFrame(r));
-window.onload = async () => {
+window.addEventListener("load", async () => {
     for (let i = 0; i < 3; i++) await requestAnimationFramePromised();
     requestAnimationFrame(() => document.getElementById("start_div").classList.add("start_hide"));
-}
+});
 (async () => {
     await auth();
     if (!user) return window.location.href = "/";
@@ -85,8 +85,7 @@ window.onload = async () => {
                         const song = songs[sound.uuid];
                         document.getElementById("song_details_div").innerHTML = `
         <img draggable="false" class="detail_image" src="${song.iconFile ? "icons/" + song.iconFile : "icon/blue-icon.png"}" alt="">
-        <div class="detail_name">${song.title}</div>
-        <div class="detail_artist">${song.artist}</div>`;
+        <span class="detail_name">${song.title}<br>${song.artist}</span>`;
                         sound.detailUpdate = sound.uuid;
                     }
                     document.getElementById("song_details_div").style.display = "block";
@@ -276,11 +275,11 @@ window.onload = async () => {
             updateURL();
             document.getElementById("pause_alpha").style.display = "none";
             ["speed", "time_next", "song_next", "pause", "song_back", "time_back", "loop"].forEach(e => {
-                document.getElementById(e + "_div").style.cursor = "pointer";
+                document.getElementById(e + "_div").style.cursor = "var(--cursor-click), auto";
                 document.getElementById(e + "_div").style.pointerEvents = "all";
                 document.getElementById(e + "_alpha").classList.remove("alpha2_locked");
             });
-            document.getElementById("time_line_div").style.cursor = "pointer";
+            document.getElementById("time_line_div").style.cursor = "var(--cursor-click), auto";
         }
 
         const getPlayListSongUuids = () => {

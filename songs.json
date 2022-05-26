@@ -87,17 +87,6 @@
     "date": -1,
     "time": -1
   },
-  "8": {
-    "file": "Can Koç - Gökyüzünü Tutamam.mp3",
-    "iconFile": "Can Koç - Gökyüzünü Tutamam.png",
-    "artist": "Can Koç",
-    "title": "Gökyüzünü Tutamam",
-    "lyrics": [
-      ""
-    ],
-    "date": -1,
-    "time": -1
-  },
   "9": {
     "file": "Charlie Puth - Attention.mp3",
     "iconFile": "Charlie Puth - Attention.png",
@@ -158,17 +147,6 @@
     "iconFile": "Eminem - Without Me.png",
     "artist": "Eminem",
     "title": "Without Me",
-    "lyrics": [
-      ""
-    ],
-    "date": -1,
-    "time": -1
-  },
-  "15": {
-    "file": "Evdeki Saat - Uzunlar V1.mp3",
-    "iconFile": "Evdeki Saat - Uzunlar V1.png",
-    "artist": "Evdeki Saat",
-    "title": "Uzunlar V1",
     "lyrics": [
       ""
     ],
@@ -312,6 +290,17 @@
     "iconFile": "Daft Punk - Get Lucky.png",
     "artist": "Daft Punk",
     "title": "Get Lucky",
+    "lyrics": [
+      ""
+    ],
+    "date": -1,
+    "time": -1
+  },
+  "29": {
+    "file": "Rick Astley - Never Gonna Give You Up.mp3",
+    "iconFile": "Rick Astley - Never Gonna Give You Up.png",
+    "artist": "Rick Astley",
+    "title": "Never Gonna Give You Up",
     "lyrics": [
       ""
     ],

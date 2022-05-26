@@ -3,6 +3,7 @@
     color: white;
     font-size: 15px;
     font-weight: bold;
+    cursor: none;
 }
 
 .left_tab {
@@ -44,7 +45,7 @@
     left: 10.4%;
     top: 5%;
     width: 89.6%;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .search {
@@ -52,7 +53,7 @@
     left: 10%;
     top: 12%;
     width: 89.6%;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .library {
@@ -60,7 +61,7 @@
     left: 10%;
     top: 19%;
     width: 89.6%;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .add_playlist {
@@ -68,7 +69,7 @@
     left: 10%;
     top: 30%;
     width: 89.6%;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .fav_playlist {
@@ -76,7 +77,7 @@
     left: 10%;
     top: 37%;
     width: 89.6%;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .lt_hr {
@@ -108,7 +109,7 @@
     left: 40.5%;
     top: 39.2%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .time_back {
@@ -116,7 +117,7 @@
     left: 43.5%;
     top: 39.2%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .song_back {
@@ -124,7 +125,7 @@
     left: 46.5%;
     top: 39.2%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .pause {
@@ -132,7 +133,7 @@
     left: 50%;
     top: 38.8%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .song_next {
@@ -140,7 +141,7 @@
     left: 53.5%;
     top: 39.2%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .time_next {
@@ -148,7 +149,7 @@
     left: 56.5%;
     top: 39.2%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .loop {
@@ -156,7 +157,7 @@
     left: 59.5%;
     top: 39.2%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .time_line {
@@ -168,7 +169,7 @@
     height: 4px;
     background: #282828;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .time_line_progress {
@@ -179,7 +180,7 @@
     height: 4px;
     background: white;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .time_line_sphere {
@@ -190,7 +191,7 @@
     height: 10px;
     border-radius: 50%;
     background: white;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .volume_line_image {
@@ -207,7 +208,7 @@
     height: 4px;
     background: #282828;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .volume_line_progress {
@@ -218,7 +219,7 @@
     height: 4px;
     background: white;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .volume_line_sphere {
@@ -229,7 +230,7 @@
     height: 10px;
     border-radius: 50%;
     background: white;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .start_time_text {
@@ -300,7 +301,7 @@
     height: 10%;
     background: #282828;
     transition: all 0.25s;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .song:hover {
@@ -326,7 +327,7 @@
 }
 
 .song_image {
-    width: 64px;
+    height: 64px;
 }
 
 .song_image_td {
@@ -420,27 +421,18 @@
 }
 
 .detail_image {
-    width: 75px;
+    height: 75px;
 }
 
 .detail_name {
     position: absolute;
-    top: 40%;
-    left: 30%;
-    transform: translateY(-50%);
+    top: 50%;
+    margin-left: 15px;
+    transform: translate(0, -50%);
     color: white;
     vertical-align: middle;
     white-space: nowrap;
-}
-
-.detail_artist {
-    position: absolute;
-    top: 60%;
-    left: 35%;
-    transform: translateY(-50%);
-    color: white;
-    vertical-align: middle;
-    white-space: nowrap;
+    text-align: center;
 }
 
 .song_random {
@@ -450,7 +442,7 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    cursor: pointer;
+    cursor: var(--cursor-click), auto;
 }
 
 .song_random > img {

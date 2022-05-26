@@ -51,7 +51,7 @@ async function updateSongs() {
                 song.time = duration;
                 newSongs[uuid] = song;
             }
-        }
+        } else console.error(song.file + " not found!");
     }
     songs = newSongs;
     await new Promise(resolve => setTimeout(resolve, 10000));
@@ -97,7 +97,7 @@ io(http).on("connection", sk => {
         const alertTo = (a, b) => alerts[a] = b;
         const n = r => json[r];
         //const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}])|(([a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/;
-        const emailRegex = /([a-zA-Z\d._]){8,40}@([a-zA-Z\d-_]{2,28}){2,4}/;
+        const emailRegex = /([a-zA-Z\d._]){8,40}@([a-zA-Z\d-_]{2,28}\.){1,4}[a-zA-Z\d-_]{2,28}/;
         const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&\/\\+\-()~`'"#^>£½{₺}¨.:;<|€]{8,}$/;
         const expected = {
             "email": "",
@@ -111,7 +111,7 @@ io(http).on("connection", sk => {
         };
         let d;
         if (
-            Object.keys(expected).some(i => (!n(i) && n(i) !== 0) || typeof n(i) !== typeof expected[i]) ||
+            Object.keys(expected).some(i => (!n(i) && n(i) !== 0 && n(i) !== false) || typeof n(i) !== typeof expected[i]) ||
             ![0, 1, 2].includes(n("gender")) || !(d = new Date(n("birth"))) || !d.getTime() ||
             d.getFullYear() > (new Date()).getFullYear() || d.getFullYear() < (new Date()).getFullYear() - 164 ||
             d.getFullYear() > (new Date()).getFullYear() - 13 || !emailRegex.test(n("email")) ||
