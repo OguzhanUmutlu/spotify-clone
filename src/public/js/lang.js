@@ -6,7 +6,7 @@ window.LanguageManager = {
             "library-left": "Kitaplığın",
             "create-playlist-left": "Çalma Listesi Oluştur",
             "favorite-songs-left": "Beğenilen Şarkılar",
-            "welcome-text": "Holify'a Hoşgeldiniz",
+            "welcome-text": "Holify'a bağlanılıyor...",
             "main-menu-rank-table": "#",
             "main-menu-title-table": "Şarkı",
             "main-menu-artist-table": "Sanatçı",
@@ -16,7 +16,8 @@ window.LanguageManager = {
             "loop-tooltip": "Aynı şarkıyı tekrarla",
             "mix-list-tooltip": "Şarkıları karıştır",
             "loop-list-tooltip": "Listedeki şarkıları sırayla çal",
-            "song-random-tooltip": "Listedeki rastgele bir şarkıyı oynatır"
+            "song-random-tooltip": "Listedeki rastgele bir şarkıyı oynatır",
+            "not-found": "Sonuç bulunamadı",
         },
         "en_US": {
             "main-menu-left": "Home",
@@ -24,7 +25,7 @@ window.LanguageManager = {
             "library-left": "Library",
             "create-playlist-left": "Create Playlist",
             "favorite-songs-left": "Favorite Songs",
-            "welcome-text": "Welcome to Holify",
+            "welcome-text": "Connecting to Holify...",
             "main-menu-rank-table": "#",
             "main-menu-title-table": "Song",
             "main-menu-artist-table": "Artist",
@@ -34,7 +35,8 @@ window.LanguageManager = {
             "loop-tooltip": "Loop current song",
             "mix-list-tooltip": "Mix current playlist",
             "loop-list-tooltip": "Loop current playlist",
-            "song-random-tooltip": "Play random song from playlist"
+            "song-random-tooltip": "Play random song from playlist",
+            "not-found": "No result found",
         }
     },
     translateContainer: () => {

@@ -1,8 +1,8 @@
 global.dbL = {
     uuid: `CREATE TABLE IF NOT EXISTS uuid (
-    i INTEGER PRIMARY KEY,
-    uuid INTEGER
-)`,
+        i INTEGER PRIMARY KEY,
+        uuid INTEGER
+    )`,
     user: `
     CREATE TABLE IF NOT EXISTS users (
         uuid INTEGER PRIMARY KEY UNIQUE,
@@ -14,13 +14,14 @@ global.dbL = {
         marketingNotifications INTEGER NOT NULL,
         createdTimestamp INTEGER NOT NULL,
         lastLoginTimestamp INTEGER NOT NULL
-    );
-`,
+    )`,
     playLists: `CREATE TABLE IF NOT EXISTS playLists (
         uuid INTEGER PRIMARY KEY,
+        "position" INTEGER NOT NULL,
         ownerUuid INTEGER NOT NULL,
         title TEXT NOT NULL,
         songUuids TEXT NOT NULL,
+        "public" INTEGER NOT NULL,
         createdTimestamp INTEGER NOT NULL,
         lastModifiedTimestamp INTEGER NOT NULL
     )`,

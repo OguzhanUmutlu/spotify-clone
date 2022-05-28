@@ -43,7 +43,7 @@
 </div>
 <div class="account_container"></div>
 <div class="page_container" id="page_container">
-    <div id="PAGE_MAIN">
+    <div id="PAGE_HOME" hidden>
         <div class="song_random" onclick="playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
             <img draggable="false" src="assets/mix-list.png" alt="" width="50">
         </div>
@@ -62,8 +62,16 @@
             <br>
         </div>
     </div>
-    <div id="PAGE_SEARCH"></div>
-    <div id="PAGE_LIBRARY"></div>
+    <div id="PAGE_SEARCH" hidden>
+        <label for="search_input"></label><input class="search_input" spellcheck="false" type="text" id="search_input">
+        <div id="search_not_found" class="search_not_found" data-lang="not-found"></div>
+        <div class="song_container" id="song_container_search" hidden style="margin-top: 40px;">
+            <table id="song_table_search" class="song_table"></table>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div id="PAGE_LIBRARY" hidden></div>
     <div id="PAGE_PLAYLIST" hidden>
         <div class="song_random" onclick="playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
             <img draggable="false" src="assets/mix-list.png" alt="" width="50">
@@ -127,8 +135,9 @@
     <div class="volume_line_sphere" id="volume_line_sphere"></div>
 </div>
 <div class="tooltip" id="tooltip"></div>
+<div class="context_menu" id="context_menu"></div>
 <div class="start" id="start_div">
-    <img draggable="false" src="icon/blue-icon.png" class="start_icon" alt="">
+    <div class="start_icon_div"><img draggable="false" src="icon/blue-icon.png" class="start_icon" id="start_icon" alt=""></div>
     <div class="start_text" data-lang="welcome-text"></div>
 </div>
 </body>

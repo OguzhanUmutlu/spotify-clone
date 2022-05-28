@@ -286,7 +286,7 @@
     top: 10%;
     width: 79.8%;
     height: 75.6%;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .song_container {
@@ -294,6 +294,8 @@
     top: 5%;
     left: 50%;
     transform: translateX(-50%);
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .song {
@@ -308,7 +310,6 @@
     transition: all 0.25s;
     background: #3d3d3d;
     transform: scale(1.05);
-
 }
 
 .song > td {
@@ -349,6 +350,8 @@
     border-collapse: separate;
     border: 1px solid #282828;
     background: #282828;
+    margin-left: 10%;
+    width: 80%;
 }
 
 .tooltip {
@@ -378,7 +381,6 @@
     background: linear-gradient(90deg, rgba(24, 24, 24, 1) 0%, rgba(28, 28, 28, 1) 100%);
     opacity: 1;
     transition: opacity 1s;
-    cursor: not-allowed;
 }
 
 .start_hide {
@@ -387,13 +389,23 @@
     pointer-events: none;
 }
 
-.start_icon {
+.start_icon_div {
     position: absolute;
     left: 50%;
     top: 40%;
-    transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
+    transform: translate(-50%, -50%);
+}
+
+.start_icon {
+    width: 100px;
+    height: 100px;
+    -webkit-animation: rotating 4s ease-in-out infinite;
+    -moz-animation: rotating 4s ease-in-out infinite;
+    -ms-animation: rotating 4s ease-in-out infinite;
+    -o-animation: rotating 4s ease-in-out infinite;
+    animation: rotating 4s ease-in-out infinite;
 }
 
 .start_text {
@@ -450,6 +462,113 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.context_menu {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    background: #000000;
+    display: none;
+}
+
+.context_menu > button {
+    outline: none;
+    border: none;
+    background: none;
+    padding: 10px;
+    color: #1ed760;
+    transition: all 1s;
+    width: 100%;
+}
+
+.context_menu > button:hover {
+    background: #1ed760;
+    color: #000000;
+}
+
+.context_menu > .top_button {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.context_menu > .bottom_button {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.search_not_found {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #1ed760;
+    font-size: 20px;
+    text-align: center;
+}
+
+.search_input {
+    position: absolute;
+    left: 3%;
+    top: 10px;
+    width: 40%;
+    height: 30px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #3d3d3d;
+    font-size: 20px;
+    transition: all 0.25s;
+    outline: none;
+    padding: 5px;
+    border: none;
+}
+
+.search_input:hover {
+    background: #3d3d3d;
+    color: #ffffff;
+}
+
+@-webkit-keyframes rotating {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    20% {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    0% {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    10% {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 ::-webkit-scrollbar {

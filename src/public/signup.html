@@ -97,7 +97,8 @@
 </body>
 <script>
     (async () => {
-        await noAuth();
+        await auth();
+        if (AUTH.isValid) window.location.href = "/app";
         const n = m => document.getElementById(m);
 
         let validation = null;

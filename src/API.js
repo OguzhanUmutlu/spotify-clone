@@ -30,20 +30,39 @@ class User {
 class PlayList {
     /**
      * @param {number | Object} uuid
+     * @param {number?} position
      * @param {number?} ownerUuid
      * @param {string?} title
      * @param {string[]?} songUuids
+     * @param {boolean?} ownerUuid
      * @param {number?} createdTimestamp
      * @param {number?} lastModifiedTimestamp
      */
-    constructor(uuid, ownerUuid, title, songUuids, createdTimestamp, lastModifiedTimestamp) {
-        if (typeof uuid === "object") ["ownerUuid", "title", "songUuids", "createdTimestamp", "lastModifiedTimestamp", "uuid"].forEach(i => eval(`${i} = uuid.${i}`));
+    constructor(uuid, position, ownerUuid, title, songUuids, publiC, createdTimestamp, lastModifiedTimestamp) {
+        if (typeof uuid === "object") {
+            ["ownerUuid", "position", "title", "songUuids", "createdTimestamp", "lastModifiedTimestamp", "uuid"].forEach(i => eval(`${i} = uuid.${i}`));
+            if (uuid.public) publiC = uuid.public;
+        }
         this.uuid = uuid;
+        this.position = position;
         this.ownerUuid = ownerUuid;
         this.title = title;
         this.songUuids = songUuids;
+        this.public = !!publiC;
         this.createdTimestamp = createdTimestamp;
         this.lastModifiedTimestamp = lastModifiedTimestamp;
+    }
+
+    toJSON() {
+        return {
+            uuid: this.uuid,
+            position: this.position,
+            ownerUuid: this.ownerUuid,
+            title: this.title,
+            songUuids: this.songUuids,
+            createdTimestamp: this.createdTimestamp,
+            lastModifiedTimestamp: this.lastModifiedTimestamp
+        };
     }
 }
 
@@ -180,12 +199,24 @@ class db {
                       WHERE uuid = ?`).run(uuid);
     }
 
-    static addPlayList(ownerUuid, title, createdTimestamp, songUuids = []) {
+    static addPlayList(ownerUuid, title, createdTimestamp = Date.now(), songUuids = [], publiC = true) {
         const uuid = generateUUID();
-        sqdb.prepare(`INSERT INTO playLists (uuid, ownerUuid, title, songUuids, createdTimestamp, lastModifiedTimestamp)
+        const position = sqdb.prepare(`SELECT COUNT(*)
+                                       FROM playlists
+                                       WHERE ownerUuid = ?`).get(ownerUuid).count;
+        sqdb.prepare(`INSERT INTO playLists (uuid, "position", ownerUuid, title, songUuids, "public", createdTimestamp,
+                                             lastModifiedTimestamp)
                       VALUES (?, ?, ?, ?,
-                              ?)`).run(uuid, ownerUuid, title, songUuids.join("|"), createdTimestamp, createdTimestamp);
+                              ?)`).run(uuid, position, ownerUuid, title, songUuids.join("|"), publiC ? 1 : 0, createdTimestamp, createdTimestamp);
         return new PlayList(uuid, ownerUuid, title, songUuids, createdTimestamp, createdTimestamp);
+    }
+
+    static removePlayList(ownerUuid, uuid) {
+        sqdb.prepare(`DELETE
+                      FROM playLists
+                      WHERE uuid = ?
+                        AND ownerUuid = ?`).run(uuid, ownerUuid);
+        return ownerUuid;
     }
 
     static getPlayList(uuid) {
@@ -210,6 +241,19 @@ class db {
             playListsList[playList.uuid] = new PlayList(playList);
         }
         return playListsList;
+    }
+
+    static getPlayListsByUserJSON(user) {
+        if (user instanceof User) user = user.uuid;
+        const playLists = sqdb.prepare(`SELECT *
+                                        FROM playLists
+                                        WHERE ownerUuid = ?`).all(user);
+        const playListsList = {};
+        for (const playList of playLists) {
+            playList.songUuids = playList.songUuids.split("|").map(uuid => uuid * 1);
+            playListsList[playList.uuid] = new PlayList(playList).toJSON();
+        }
+        return JSON.stringify(playListsList);
     }
 
     static updatePlayList(uuid, rows = {}) {
@@ -260,10 +304,19 @@ class db {
 
     static getPlayListSongIndex(playListUuid, songUuid) {
         const playList = this.getPlayList(playListUuid);
-        if (playList) {
-            return playList.songUuids.indexOf(songUuid);
-        }
+        if (playList) return playList.songUuids.indexOf(songUuid);
         return null;
+    }
+
+    static getPlayListSongs(playListUuid) {
+        const playList = this.getPlayList(playListUuid);
+        if (!playList) return null;
+        const list = sqdb.prepare(`SELECT *
+                                   FROM songs
+                                   WHERE ${playListUuid.length === 0 ? "uuid = '-1'" : playListUuid.map(i => `uuid = ${i}`).join(" OR ")}`).get();
+        const songs = {};
+        for (const song of list) if (global.songs[song.uuid]) songs[song.uuid] = global.songs[song.uuid];
+        return songs;
     }
 
     static createSession(userUuid) {

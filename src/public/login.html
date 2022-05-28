@@ -37,7 +37,8 @@
 </body>
 <script>
     (async () => {
-        await noAuth();
+        await auth();
+        if (AUTH.isValid) window.location.href = "/app";
         const query = window.location.search;
         const urlParams = new URLSearchParams(query);
         if (urlParams.get("email") || urlParams.get("username")) document.getElementById("username").value = urlParams.get("email") || urlParams.get("username");

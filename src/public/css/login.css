@@ -1,7 +1,7 @@
 .logo {
     margin-left: 40%;
     width: 10%;
-    cursor: var(--cursor-click), auto;
+    cursor: pointer;
 }
 
 .logo_text {
@@ -10,7 +10,7 @@
     font-family: Gotham, serif;
     font-weight: bold;
     font-size: 35px;
-    cursor: var(--cursor-click), auto;
+    cursor: pointer;
 }
 
 .input {
@@ -76,7 +76,7 @@
 .forgot_pass {
     margin-left: 32.8%;
     font-family: "Circular Book", serif;
-    cursor: var(--cursor-click), auto;
+    cursor: pointer;
 }
 
 .forgot_pass:hover {
@@ -106,7 +106,7 @@
     width: 120px;
     height: 48px;
     border: none;
-    cursor: var(--cursor-click), auto;
+    cursor: pointer;
     letter-spacing: 2px;
 }
 
@@ -132,7 +132,7 @@
     width: 120px;
     height: 48px;
     border: none;
-    cursor: var(--cursor-click), auto;
+    cursor: pointer;
     letter-spacing: 2px;
 }
 
@@ -177,7 +177,7 @@
     width: 450px;
     height: 48px;
     border: none;
-    cursor: var(--cursor-click), auto;
+    cursor: pointer;
     letter-spacing: 2px;
 }
 
