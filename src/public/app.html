@@ -41,12 +41,11 @@
     </div>
     <div class="lt_hr" id="lt_hr"></div>
 </div>
-<div class="account_container"></div>
+<div class="account_container">
+    <div id=""></div><!-- TODO: account info -->
+</div>
 <div class="page_container" id="page_container">
     <div id="PAGE_HOME" hidden>
-        <div class="song_random" onclick="playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
-            <img draggable="false" src="assets/mix-list.png" alt="" width="50">
-        </div>
         <div class="song_container">
             <table id="song_table" class="song_table">
                 <tr class="song_top">
@@ -61,6 +60,9 @@
             <br>
             <br>
         </div>
+        <div class="song_random" onclick="window.currentPlayList='default';playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
+            <img draggable="false" src="assets/mix-list.png" alt="" width="50">
+        </div>
     </div>
     <div id="PAGE_SEARCH" hidden>
         <label for="search_input"></label><input class="search_input" spellcheck="false" type="text" id="search_input">
@@ -73,9 +75,6 @@
     </div>
     <div id="PAGE_LIBRARY" hidden></div>
     <div id="PAGE_PLAYLIST" hidden>
-        <div class="song_random" onclick="playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
-            <img draggable="false" src="assets/mix-list.png" alt="" width="50">
-        </div>
         <div class="song_container">
             <table id="song_table_playlist" class="song_table">
                 <tr class="song_top">
@@ -89,6 +88,9 @@
             </table>
             <br>
             <br>
+        </div>
+        <div class="song_random" onclick="playRandomSongInPlayList()" data-tooltip-lang="song-random-tooltip">
+            <img draggable="false" src="assets/mix-list.png" alt="" width="50">
         </div>
     </div>
 </div>
