@@ -55,7 +55,7 @@ async function updateSongs() {
         } else console.error(song.file + " not found!");
     }
     global.songs = newSongs;
-    new Promise(resolve => setTimeout(resolve, 10000)).then(updateSongs);
+    setTimeout(updateSongs, 10000);
 }
 
 updateSongs().then(() => {
