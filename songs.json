@@ -318,5 +318,27 @@
       ""
     ],
     "date": "1990"
+  },
+  "34": {
+    "file": "Can Koç - Gökyüzünü Tutamam.mp3",
+    "iconFile": "Can Koç - Gökyüzünü Tutamam.png",
+    "artist": "Can Koç",
+    "title": "Gökyüzünü Tutamam",
+    "lyrics": [
+      ""
+    ],
+    "date": -1,
+    "time": -1
+  },
+  "35": {
+    "file": "Frank Sinatra - I Love You.mp3",
+    "iconFile": "Frank Sinatra - I Love You.png",
+    "artist": "Frank Sinatra",
+    "title": "I Love You",
+    "lyrics": [
+      ""
+    ],
+    "date": -1,
+    "time": -1
   }
 }

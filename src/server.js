@@ -6,6 +6,7 @@ const http = new (require("http")).Server(app);
 global.sqdb = require("better-sqlite3")("./data.db");
 require("./API");
 
+
 app.use((req, res, next) => {
     if (req.url.split("/").pop().endsWith(".html")) return;
     next();
