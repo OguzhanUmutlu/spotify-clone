@@ -22,6 +22,7 @@ node src/server
 - Language support for log in/register pages.
 - Playlists.
 - Library. (Will add the most listened songs in it)
+- The progress bar of the song only moves when mouse moves.
 
 # Screenshots
 
