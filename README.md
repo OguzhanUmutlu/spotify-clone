@@ -15,17 +15,21 @@ Run this command to start the server, and you are done! Just enter `http://local
 node src/server
 ```
 
-# Notes
+# To do
 
-- I haven't added language support to log in/register pages. You can add it if you want to contribute! 
+**You can create a pull request and contribute to the project!**
+
+- Language support for log in/register pages.
+- Playlists.
+- Library. (Will add the most listened songs in it)
 
 # Screenshots
 
-Register:
+**Register:**
 ![](./assets/screenshots/register.png)
 
-Login:
+**Login:**
 ![](./assets/screenshots/login.png)
 
-App:
+**App:**
 ![](./assets/screenshots/app.png)
