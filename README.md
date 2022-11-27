@@ -1,4 +1,31 @@
 # spotify-clone
 A spotify clone that does not look like spotify. Let me introduce you, Holify.
 
-[![YouTube](https://i9.ytimg.com/vi_webp/z-kPSDfW4-Y/mqdefault.webp?sqp=CKz52JQG&rs=AOn4CLARQZPeErdD3qqpuz0zLf0-r8dLTw)](https://youtu.be/z-kPSDfW4-Y)
+# Setup
+
+Download the repository or just use `git clone git://OguzhanUmutlu/spotify-clone`
+
+Install required dependencies:
+```cmd
+npm install
+```
+
+Run this command to start the server, and you are done! Just enter `http://localhost/` on your browser and listen to your favorite masterpiece...
+```cmd
+node src/server
+```
+
+# Notes
+
+- I haven't added language support to log in/register pages. You can add it if you want to contribute! 
+
+# Screenshots
+
+Register:
+![](./assets/screenshots/register.png)
+
+Login:
+![](./assets/screenshots/login.png)
+
+App:
+![](./assets/screenshots/app.png)
